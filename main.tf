@@ -116,10 +116,6 @@ resource "azurerm_virtual_machine" "catapp" {
     offer     = var.image_offer
     sku       = var.image_sku
     version   = var.image_version
-  
-  tags = {
-    Department = "devops"
-  }
   }
 
   storage_os_disk {
@@ -139,7 +135,9 @@ resource "azurerm_virtual_machine" "catapp" {
     disable_password_authentication = false
   }
 
-  tags = {}
+  tags = {
+    Department = "devops"
+  }
 
   # Added to allow destroy to work correctly.
   depends_on = [azurerm_network_interface_security_group_association.catapp-nic-sg-ass]
